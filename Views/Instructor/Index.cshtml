@@ -1,0 +1,41 @@
+@{
+    ViewData["Title"] = "Categories";
+}
+@model List<Instructor>;
+
+<div class="text-end">
+    <a class="btn btn-outline-primary" asp-asp-controller="Instructor" asp-action="Create"><i class="bi bi-plus-circle"></i>&nbsp; Add new </a>
+</div>
+
+
+<h1 class="text-bg">Categories</h1>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="row">Position</th>
+            <th scope="col">Name</th>
+            <th scope="col">Display Order</th>
+            <th scope="col" class="text-center"> Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            var num = 0;
+        }
+        @foreach (var item in Model.OrderBy(x => x.FirstName))
+        {
+            num++;
+            <tr class="table-active">
+                <th scope="row">@num</th>
+                <td scope="row">@item.FirstName</td>
+                <td scope="row">@item.LastName</td>
+                <td scope="row" class="text-center btn-group" role="group">
+                    <a class="btn btn-info" asp-route-Id="@item.Id" asp-action="Edit"><i
+                            class="bi bi-pencil-square"></i>&nbsp;Edit</a>
+                    <a class="btn btn-danger" asp-route-Id="@item.Id" asp-action="Delete"><i
+                            class="bi bi-trash3"></i> &nbsp;Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
